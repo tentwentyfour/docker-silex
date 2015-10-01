@@ -5,7 +5,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 RUN apt-get install -y php5-mysqlnd php5-gd php5-curl php5-xdebug \
-mysql-client php5-intl libxrender1 libxext6
+ mysql-client php5-intl libxrender1 libxext6
+RUN apt-get install -y libxrender-dev libxext-dev
 RUN a2enmod rewrite
 
 ADD silex.conf /etc/apache2/sites-available/
