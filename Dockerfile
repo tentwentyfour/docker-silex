@@ -12,14 +12,15 @@ RUN a2enmod rewrite
 RUN a2enmod socache_shmcb
 
 ADD silex.conf /etc/apache2/sites-available/
-RUN a2dissite default.conf
+RUN ls /etc/apache2/sites-enabled
+RUN a2dissite 000-default.conf
 RUN a2ensite silex.conf
 
-RUN echo xdebug.default_enable=1 >> /etc/php5/conf.d/20-xdebug.ini; \
-	echo xdebug.remote_enable=1 >> /etc/php5/conf.d/20-xdebug.ini; \
-	echo xdebug.remote_autostart=1 >> /etc/php5/conf.d/20-xdebug.ini; \
-	echo xdebug.remote_connect_back=1 >> /etc/php5/conf.d/20-xdebug.ini; \
-	echo xdebug.remote_port=9000 >> /etc/php5/conf.d/20-xdebug.ini
+# RUN echo xdebug.default_enable=1 >> /etc/php5/conf.d/20-xdebug.ini; \
+# 	echo xdebug.remote_enable=1 >> /etc/php5/conf.d/20-xdebug.ini; \
+# 	echo xdebug.remote_autostart=1 >> /etc/php5/conf.d/20-xdebug.ini; \
+# 	echo xdebug.remote_connect_back=1 >> /etc/php5/conf.d/20-xdebug.ini; \
+# 	echo xdebug.remote_port=9000 >> /etc/php5/conf.d/20-xdebug.ini
 
 RUN apt-get clean && \
     apt-get autoclean && \
