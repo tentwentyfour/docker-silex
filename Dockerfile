@@ -1,4 +1,4 @@
-FROM docker.1024.lu/1024/apache-php
+FROM eboraas/apache-php
 MAINTAINER Martin Simon <martin@tentwentyfour.lu>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -8,6 +8,8 @@ RUN apt-get install -y php5-mysqlnd php5-gd php5-curl php5-xdebug \
  mysql-client php5-intl libxrender1 libxext6
 RUN apt-get install -y libxrender-dev libxext-dev
 RUN a2enmod rewrite
+# Fix eboraas/apache-php mistake
+RUN a2enmod socache_shmcb
 
 ADD silex.conf /etc/apache2/sites-available/
 RUN a2dissite default
