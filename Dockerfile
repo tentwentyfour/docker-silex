@@ -12,7 +12,7 @@ RUN a2enmod rewrite
 RUN a2enmod socache_shmcb
 
 ADD silex.conf /etc/apache2/sites-available/
-RUN a2dissite default
+RUN a2dissite default.conf
 RUN a2ensite silex.conf
 
 RUN echo xdebug.default_enable=1 >> /etc/php5/conf.d/20-xdebug.ini; \
