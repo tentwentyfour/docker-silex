@@ -1,4 +1,4 @@
-FROM eboraas/apache-php
+FROM eboraas/apache-php:jessie
 MAINTAINER Martin Simon <martin@tentwentyfour.lu>
 
 ENV DEBIAN_FRONTEND noninteractive
