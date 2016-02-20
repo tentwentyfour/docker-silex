@@ -1,20 +1,17 @@
-FROM eboraas/apache-php:jessie
+FROM docker.1024.lu/1024/apache-php:latest
 MAINTAINER Martin Simon <martin@tentwentyfour.lu>
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get install -y php5-mysqlnd php5-gd php5-curl php5-xdebug \
+RUN apt-get install -y php5-curl php5-xdebug \
  mysql-client php5-intl libxrender1 libxext6
 RUN apt-get install -y libxrender-dev libxext-dev
 RUN a2enmod rewrite
-# Fix eboraas/apache-php mistake
-RUN a2enmod socache_shmcb
 
-ADD silex.conf /etc/apache2/sites-available/
-RUN ls /etc/apache2/sites-enabled
+ADD app.conf /etc/apache2/sites-available/
 RUN a2dissite 000-default.conf
-RUN a2ensite silex.conf
+RUN a2ensite app.conf
 
 # RUN echo xdebug.default_enable=1 >> /etc/php5/conf.d/20-xdebug.ini; \
 # 	echo xdebug.remote_enable=1 >> /etc/php5/conf.d/20-xdebug.ini; \
