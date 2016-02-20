@@ -13,19 +13,7 @@ ADD app.conf /etc/apache2/sites-available/
 RUN a2dissite 000-default.conf
 RUN a2ensite app.conf
 
-# RUN echo xdebug.default_enable=1 >> /etc/php5/conf.d/20-xdebug.ini; \
-# 	echo xdebug.remote_enable=1 >> /etc/php5/conf.d/20-xdebug.ini; \
-# 	echo xdebug.remote_autostart=1 >> /etc/php5/conf.d/20-xdebug.ini; \
-# 	echo xdebug.remote_connect_back=1 >> /etc/php5/conf.d/20-xdebug.ini; \
-# 	echo xdebug.remote_port=9000 >> /etc/php5/conf.d/20-xdebug.ini
-
 RUN apt-get clean && \
     apt-get autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/
-
-ENV APACHE_ENV dev
-
-EXPOSE 80
-
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
