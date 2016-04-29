@@ -7,6 +7,7 @@ RUN apt-get update
 RUN apt-get install -y php5-curl php5-xdebug \
  mysql-client php5-intl libxrender1 libxext6
 RUN apt-get install -y libxrender-dev libxext-dev
+RUN apt-get install -y libapache2-mod-php5
 RUN a2enmod rewrite
 
 ADD app.conf /etc/apache2/sites-available/
