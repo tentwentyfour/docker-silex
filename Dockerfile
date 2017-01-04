@@ -1,13 +1,12 @@
-FROM docker.1024.lu/1024/apache-php:latest
+FROM docker.1024.lu/1024/apache-php:7.0
 MAINTAINER Martin Simon <martin@tentwentyfour.lu>
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get install -y php5-curl php5-xdebug \
- mysql-client php5-intl libxrender1 libxext6
+RUN apt-get install -y php-curl php-xdebug php-soap \
+ mysql-client php-intl libxrender1 libxext6
 RUN apt-get install -y libxrender-dev libxext-dev
-RUN apt-get install -y libapache2-mod-php5
 RUN a2enmod rewrite
 
 ADD app.conf /etc/apache2/sites-available/
